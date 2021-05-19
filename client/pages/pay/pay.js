@@ -10,6 +10,7 @@ Page({
    */
   data: {
     paypackage: '',
+    logs:"0000",
   },
 
   ordersubmit: function(){
@@ -18,19 +19,25 @@ Page({
       success: function (res) {
         if (res.code) {
           //发起网络请求
-          wx.request({
-            url: 'http://127.0.0.1:8360/v1/pay/ordersubmit',
+          wx.request({ 
+            url: appInstance.globalData.config.host_url+'/v1/recharge',
             data: {
               code: res.code
             },
+            header:{
+              Authorize: wx.getStorageSync('jwt_token')
+            },
             method: 'POST',
             success: function (res) {  
-              console.log(res)            
-              self.package = res.data.data.package
-              self.timeStamp = res.data.data.timeStamp + ''
-              self.nonceStr = res.data.data.nonceStr
-              self.signType = res.data.data.signType
-              self.paySign = res.data.data.paySign
+              console.log(res)        
+              self.setData('logs',res.data.message)    
+              if(res.data.code==0){
+                self.package = res.data.data.package
+                self.timeStamp = res.data.data.timeStamp + ''
+                self.nonceStr = res.data.data.nonceStr
+                self.signType = res.data.data.signType
+                self.paySign = res.data.data.paySign
+              }
             }
           })
         } else {

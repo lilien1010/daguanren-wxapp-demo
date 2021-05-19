@@ -1,10 +1,10 @@
 {
   "pages": [
+    "pages/login/login",
+    "pages/pay/pay", 
     "pages/index/index",
     "pages/loading/loading",
     "pages/logs/logs",
-    "pages/login/login",
-    "pages/pay/pay",
     "pages/plugin/txmap/txmap",
     "pages/plugin/txvideo/txvideo"
   ],
@@ -28,16 +28,7 @@
       ]
     }
   ],
-  "plugins": {
-    "routePlan": {
-      "version": "1.0.5",
-      "provider": "wx50b5593e81dd937a"
-    },
-    "txvideo": {
-      "version": "1.3.7",
-      "provider": "wxa75efa648b60994b"
-    }
-  },
+   
   
 
   "window": {

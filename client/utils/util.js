@@ -9,19 +9,16 @@ const wxlogin = (callback) => {
 
         //发起网络请求
         wx.request({
-          url: appInstance.globalData.config.host_url + '/user/wxlogin',
+          url: appInstance.globalData.config.host_url + '/login',
           method: 'POST',
           data: {
-            js_code: res.code
+              code: res.code
           },
           dataType: 'json',
           success: function (res) {
-            if (0 == res.data.errno) {
-              wx.setStorageSync('third_session', res.data.data.third_session)
-              wx.setStorageSync('sessionId', res.data.data.session_id)
-
+            if (0 == res.data.code) { 
+              wx.setStorageSync('jwt_token', res.data.data.jwt_token)
               callback(true)
-
             } else {
               console.log('登录失败！' + res.data.data.errmsg)
               callback(false)

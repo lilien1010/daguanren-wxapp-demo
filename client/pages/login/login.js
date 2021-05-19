@@ -45,6 +45,17 @@ Page({
   /**
    * shopGoods
    */
+    gopay: function (e) {
+    // 
+    if (e) {
+      wx.navigateTo({
+        url: '/pages/pay/pay'
+      })
+    }
+  },
+  /**
+   * shopGoods
+   */
   shopGoods: function (e) {
     // 
     if (e) {
